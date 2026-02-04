@@ -1,10 +1,10 @@
 # Bus Route Network Analysis
 ## Executive Summary Report
 
-- **Analysis Date:** February 2026
-- **Network Coverage:** 208 Bus Routes
-- **Total Network Distance:** 7,745 km
-- **Total Service Points:** 11,786 stops
+**Analysis Date:** February 2026
+**Network Coverage:** 208 Bus Routes
+**Total Network Distance:** 7,745 km
+**Total Service Points:** 11,786 stops
 
 ---
 
@@ -80,7 +80,7 @@ BakuBus MMC dominates with 55 routes covering 2,466 km, significantly ahead of s
 
 ### 4. Network Design Strategy
 
-**Chart Reference:** `04_route_length_distribution.png`
+![04_route_length_distribution.png](charts/04_route_length_distribution.png)
 
 **What the Data Shows:**
 Most routes fall into Medium (10-20 km) and Long (20-30 km) categories, with significant presence in Very Long (30-40 km) and Ultra Long (40+ km) segments.
@@ -97,7 +97,7 @@ Most routes fall into Medium (10-20 km) and Long (20-30 km) categories, with sig
 
 ### 5. Service Accessibility Analysis
 
-**Chart Reference:** `05_stop_density_analysis.png`
+![05_stop_density_analysis.png](charts/05_stop_density_analysis.png)
 
 **What the Data Shows:**
 Stop density varies significantly across routes, with median density around 2 stops/km. Longer routes generally have lower stop density, shown by color-coded speed performance.
@@ -114,7 +114,7 @@ Identify routes with excessive stop density (>3 stops/km) on longer routes. Thes
 
 ### 6. Time-Distance Efficiency
 
-**Chart Reference:** `06_duration_vs_distance.png`
+![06_duration_vs_distance.png](charts/06_duration_vs_distance.png)
 
 **What the Data Shows:**
 A linear relationship exists between route length and travel time (trend: 1.7 min/km). Routes colored by number of stops reveal that more stops extend journey times beyond the trend line.
@@ -131,7 +131,7 @@ A linear relationship exists between route length and travel time (trend: 1.7 mi
 
 ### 7. Network Connectivity
 
-**Chart Reference:** `07_transport_hub_coverage.png`
+![07_transport_hub_coverage.png](charts/07_transport_hub_coverage.png)
 
 **What the Data Shows:**
 Top routes connect 10-15 transport hubs while serving 60-90 total stops.
@@ -148,7 +148,7 @@ Top routes connect 10-15 transport hubs while serving 60-90 total stops.
 
 ### 8. Revenue Collection Infrastructure
 
-**Chart Reference:** `08_payment_methods.png`
+![08_payment_methods.png](charts/08_payment_methods.png)
 
 **What the Data Shows:**
 The majority of routes support card payment ("Kart"), with some routes offering cash or mixed payment options.
@@ -165,7 +165,7 @@ The majority of routes support card payment ("Kart"), with some routes offering 
 
 ### 9. Pricing Strategy
 
-**Chart Reference:** `09_tariff_analysis.png`
+![09_tariff_analysis.png](charts/09_tariff_analysis.png)
 
 **What the Data Shows:**
 Most routes charge 0.60 AZN, with some variation to 0.40 AZN for certain service categories.
@@ -182,7 +182,7 @@ Most routes charge 0.60 AZN, with some variation to 0.40 AZN for certain service
 
 ### 10. Regional Service Distribution
 
-**Chart Reference:** `10_regional_coverage.png`
+![10_regional_coverage.png](charts/10_regional_coverage.png)
 
 **What the Data Shows:**
 Service heavily concentrated in Bakı region, with minimal presence in other regions.
@@ -199,7 +199,7 @@ Service heavily concentrated in Bakı region, with minimal presence in other reg
 
 ### 11. Service Type Classification
 
-**Chart Reference:** `11_avg_stop_distance.png`
+![11_avg_stop_distance.png](charts/11_avg_stop_distance.png)
 
 **What the Data Shows:**
 Routes naturally segment into express/rapid services (large stop spacing, 2+ km between stops) and local services (dense spacing, <1 km between stops).
@@ -216,7 +216,7 @@ Routes naturally segment into express/rapid services (large stop spacing, 2+ km 
 
 ### 12. Performance Portfolio
 
-**Chart Reference:** `12_efficiency_matrix.png`
+![12_efficiency_matrix.png](charts/12_efficiency_matrix.png)
 
 **What the Data Shows:**
 Routes fall into four quadrants:
@@ -243,7 +243,7 @@ Routes fall into four quadrants:
 
 ### Immediate Actions (0-3 Months)
 
-1. **Quick Wins:** Implement stop consolidation on the bottom 15 slowest routes
+1. **Quick Wins:** Evaluate splitting the 5 longest routes (115+ min journey times) into segmented services
 2. **Data Infrastructure:** Complete digital payment rollout across all routes
 3. **Performance Monitoring:** Establish monthly KPI dashboards for all carriers
 
@@ -277,10 +277,10 @@ Routes fall into four quadrants:
 
 The bus route network shows strong foundation metrics but significant optimization potential. Key opportunities lie in:
 
-1. **Operational Efficiency:** Speed improvements on bottom 15 routes
-2. **Market Structure:** Carrier consolidation for better service delivery
-3. **Service Design:** Formal classification into Express/Rapid/Local tiers
-4. **Technology:** Complete digital transformation of payment and tracking
+1. **Resource Optimization:** Segment ultra-long routes (115+ min journeys) for better vehicle utilization
+2. **Market Structure:** Reduce dependency on dominant carrier (26% market share) through diversification
+3. **Service Design:** Formal classification into Express/Rapid/Local tiers with appropriate branding
+4. **Technology:** Complete digital transformation of payment and tracking systems
 
 **Recommended Next Step:**
 Form a cross-functional task force to implement the Immediate Actions within 90 days. Quick wins will build momentum for larger strategic initiatives.
@@ -294,9 +294,7 @@ Form a cross-functional task force to implement the Immediate Actions within 90 
 - **Metrics Calculated:** Speed, efficiency, coverage, connectivity
 - **Charts Generated:** 12 business intelligence visualizations
 
-For detailed charts, refer to the `/charts` directory.
-
 ---
 
-- **Report Prepared For:** Executive Leadership & Operations Management
-- **Classification:** Internal Use - Strategic Planning
+**Report Prepared For:** Executive Leadership & Operations Management
+**Classification:** Internal Use - Strategic Planning
