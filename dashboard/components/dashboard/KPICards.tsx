@@ -18,7 +18,7 @@ function KPICard({ label, value, icon, trend, change }: KPICardProps) {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">{label}</p>
-            <p className="text-3xl font-bold mt-2">{value}</p>
+            <p className="text-3xl font-bold mt-2 text-gray-900">{value}</p>
             {change && (
               <p className={`text-sm mt-2 ${
                 trend === "up" ? "text-green-600" : trend === "down" ? "text-red-600" : "text-gray-600"

@@ -83,15 +83,15 @@ export default function FilterPanel({
         <div className="space-y-4">
           {/* Carrier Filter */}
           <div>
-            <label className="text-sm font-semibold block mb-2">Top Carriers</label>
+            <label className="text-sm font-semibold block mb-2 text-gray-900">Top Carriers</label>
             <div className="space-y-1 max-h-48 overflow-y-auto">
               {carriers.slice(0, 10).map((carrier) => (
-                <label key={carrier} className="flex items-center gap-2 text-sm">
+                <label key={carrier} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={selectedCarriers.includes(carrier)}
                     onChange={() => toggleCarrier(carrier)}
-                    className="rounded"
+                    className="rounded border-gray-300"
                   />
                   <span className="truncate">{carrier}</span>
                 </label>
@@ -101,15 +101,15 @@ export default function FilterPanel({
 
           {/* Region Filter */}
           <div>
-            <label className="text-sm font-semibold block mb-2">Region</label>
+            <label className="text-sm font-semibold block mb-2 text-gray-900">Region</label>
             <div className="space-y-1">
               {regions.map((region) => (
-                <label key={region} className="flex items-center gap-2 text-sm">
+                <label key={region} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={selectedRegions.includes(region)}
                     onChange={() => toggleRegion(region)}
-                    className="rounded"
+                    className="rounded border-gray-300"
                   />
                   <span>{region}</span>
                 </label>
@@ -119,14 +119,14 @@ export default function FilterPanel({
 
           {/* Speed Range */}
           <div>
-            <label className="text-sm font-semibold block mb-2">Speed Range (km/h)</label>
+            <label className="text-sm font-semibold block mb-2 text-gray-900">Speed Range (km/h)</label>
             <div className="grid grid-cols-2 gap-2">
               <input
                 type="number"
                 placeholder="Min"
                 value={minSpeed}
                 onChange={(e) => setMinSpeed(e.target.value)}
-                className="px-3 py-2 border rounded text-sm"
+                className="px-3 py-2 border border-gray-300 rounded text-sm text-gray-900 bg-white"
                 step="0.1"
               />
               <input
@@ -134,7 +134,7 @@ export default function FilterPanel({
                 placeholder="Max"
                 value={maxSpeed}
                 onChange={(e) => setMaxSpeed(e.target.value)}
-                className="px-3 py-2 border rounded text-sm"
+                className="px-3 py-2 border border-gray-300 rounded text-sm text-gray-900 bg-white"
                 step="0.1"
               />
             </div>
@@ -142,21 +142,21 @@ export default function FilterPanel({
 
           {/* Length Range */}
           <div>
-            <label className="text-sm font-semibold block mb-2">Route Length (km)</label>
+            <label className="text-sm font-semibold block mb-2 text-gray-900">Route Length (km)</label>
             <div className="grid grid-cols-2 gap-2">
               <input
                 type="number"
                 placeholder="Min"
                 value={minLength}
                 onChange={(e) => setMinLength(e.target.value)}
-                className="px-3 py-2 border rounded text-sm"
+                className="px-3 py-2 border border-gray-300 rounded text-sm text-gray-900 bg-white"
               />
               <input
                 type="number"
                 placeholder="Max"
                 value={maxLength}
                 onChange={(e) => setMaxLength(e.target.value)}
-                className="px-3 py-2 border rounded text-sm"
+                className="px-3 py-2 border border-gray-300 rounded text-sm text-gray-900 bg-white"
               />
             </div>
           </div>
