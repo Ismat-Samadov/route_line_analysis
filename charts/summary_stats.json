@@ -1,0 +1,18 @@
+{
+  "total_routes": 208,
+  "total_network_km": 7745.4400000000005,
+  "avg_route_length": 37.23769230769231,
+  "avg_speed": 36.29952731304735,
+  "total_stops": 11786,
+  "avg_stops_per_route": 56.66346153846154,
+  "fastest_route": "519",
+  "fastest_speed": 41.4,
+  "slowest_route": "1",
+  "slowest_speed": 36.0,
+  "longest_route": "195",
+  "longest_distance": 131.0,
+  "carriers": 43,
+  "regions": 2,
+  "avg_tariff": 0.5865384615384615,
+  "total_hubs": 143
+}
