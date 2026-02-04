@@ -33,9 +33,18 @@ function MapUpdater({ routes }: { routes: ProcessedRoute[] }) {
         route.stops?.forEach((stop) => {
           const lat = parseFloat(stop.stop?.latitude || "0");
           const lon = parseFloat(stop.stop?.longitude || "0");
-          if (lat && lon) {
+          if (lat && lon && !isNaN(lat) && !isNaN(lon) && lat !== 0 && lon !== 0) {
             bounds.push([lat, lon]);
           }
+        });
+
+        // Also add flowCoordinates to bounds
+        route.routes?.forEach((variant) => {
+          variant.flowCoordinates?.forEach((coord) => {
+            if (coord && coord.lat && coord.lon && !isNaN(coord.lat) && !isNaN(coord.lon)) {
+              bounds.push([coord.lat, coord.lon]);
+            }
+          });
         });
       });
 
@@ -84,10 +93,12 @@ export default function RouteMap({ routes, selectedRoute, onRouteClick }: RouteM
         const routeLines = route.routes?.map((variant, idx) => {
           if (!variant.flowCoordinates || variant.flowCoordinates.length === 0) return null;
 
-          const coordinates: [number, number][] = variant.flowCoordinates.map((coord) => [
-            coord.lat,
-            coord.lon,
-          ]);
+          const coordinates: [number, number][] = variant.flowCoordinates
+            .filter((coord) => coord && coord.lat && coord.lon && !isNaN(coord.lat) && !isNaN(coord.lon))
+            .map((coord) => [coord.lat, coord.lon]);
+
+          // Skip if no valid coordinates
+          if (coordinates.length === 0) return null;
 
           const color = selectedRoute ? "#3b82f6" : getColorBySpeed(route.avgSpeed);
 
@@ -125,7 +136,7 @@ export default function RouteMap({ routes, selectedRoute, onRouteClick }: RouteM
           const lat = parseFloat(stop.stop?.latitude || "0");
           const lon = parseFloat(stop.stop?.longitude || "0");
 
-          if (!lat || !lon) return null;
+          if (!lat || !lon || isNaN(lat) || isNaN(lon) || lat === 0 || lon === 0) return null;
 
           const icon = L.divIcon({
             className: "custom-div-icon",
