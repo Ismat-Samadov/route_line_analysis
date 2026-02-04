@@ -47,66 +47,77 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
     <Card>
       <CardHeader>
         <CardTitle>Route Details ({routes.length} routes)</CardTitle>
+        <p className="text-xs sm:text-sm text-gray-600 mt-2">
+          Click on any route to view it on the map
+        </p>
       </CardHeader>
       <CardContent>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="border-b">
+        <div className="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
+          <div className="inline-block min-w-full align-middle">
+            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+              <table className="min-w-full divide-y divide-gray-300 text-sm">
+            <thead className="bg-gray-50">
               <tr className="text-left">
-                <th className="pb-3 px-2">
+                <th className="py-3 px-3 sm:px-4">
                   <button
                     onClick={() => handleSort("number")}
-                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600 transition"
                   >
                     Route <ArrowUpDown size={14} />
                   </button>
                 </th>
-                <th className="pb-3 px-2">
+                <th className="py-3 px-3 sm:px-4">
                   <button
                     onClick={() => handleSort("carrier")}
-                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600 transition"
                   >
                     Carrier <ArrowUpDown size={14} />
                   </button>
                 </th>
-                <th className="pb-3 px-2">
+                <th className="py-3 px-3 sm:px-4">
                   <button
                     onClick={() => handleSort("avgSpeed")}
-                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600 transition"
                   >
                     Speed <ArrowUpDown size={14} />
                   </button>
                 </th>
-                <th className="pb-3 px-2">
+                <th className="py-3 px-3 sm:px-4">
                   <button
                     onClick={() => handleSort("routLength")}
-                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600 transition"
                   >
                     Length <ArrowUpDown size={14} />
                   </button>
                 </th>
-                <th className="pb-3 px-2">
+                <th className="py-3 px-3 sm:px-4">
                   <button
                     onClick={() => handleSort("stopCount")}
-                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600 transition"
                   >
                     Stops <ArrowUpDown size={14} />
                   </button>
                 </th>
-                <th className="pb-3 px-2 text-gray-900 font-semibold">Destination</th>
-                <th className="pb-3 px-2"></th>
+                <th className="py-3 px-3 sm:px-4 text-gray-900 font-semibold">Destination</th>
+                <th className="py-3 px-3 sm:px-4"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-white divide-y divide-gray-200">
               {paginatedRoutes.map((route) => (
                 <tr
                   key={route.id}
-                  className="border-b hover:bg-gray-50 cursor-pointer"
+                  className="hover:bg-blue-50 cursor-pointer transition-colors"
                   onClick={() => onRouteSelect(route)}
                 >
-                  <td className="py-3 px-2 font-semibold text-gray-900">Bus {route.number}</td>
-                  <td className="py-3 px-2 text-gray-900 text-xs">{route.carrier.substring(0, 20)}</td>
-                  <td className="py-3 px-2">
+                  <td className="py-4 px-3 sm:px-4 font-semibold text-gray-900 whitespace-nowrap">
+                    Bus {route.number}
+                  </td>
+                  <td className="py-4 px-3 sm:px-4 text-gray-900 text-xs">
+                    <span className="block truncate max-w-[150px] sm:max-w-none">
+                      {route.carrier.substring(0, 20)}
+                    </span>
+                  </td>
+                  <td className="py-4 px-3 sm:px-4">
                     <span className={`px-2 py-1 rounded text-xs font-medium ${
                       route.avgSpeed >= 37 ? "bg-green-100 text-green-800" :
                       route.avgSpeed >= 36.5 ? "bg-yellow-100 text-yellow-800" :
@@ -115,13 +126,19 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                       {route.avgSpeed.toFixed(1)} km/h
                     </span>
                   </td>
-                  <td className="py-3 px-2 text-gray-900">{route.routLength} km</td>
-                  <td className="py-3 px-2 text-gray-900">{route.stopCount}</td>
-                  <td className="py-3 px-2 text-gray-900 text-xs">
-                    {route.firstPoint} → {route.lastPoint}
+                  <td className="py-4 px-3 sm:px-4 text-gray-900 whitespace-nowrap">
+                    {route.routLength} km
                   </td>
-                  <td className="py-3 px-2">
-                    <button className="text-blue-600 hover:text-blue-800 text-xs font-semibold">
+                  <td className="py-4 px-3 sm:px-4 text-gray-900 whitespace-nowrap">
+                    {route.stopCount}
+                  </td>
+                  <td className="py-4 px-3 sm:px-4 text-gray-900 text-xs max-w-[200px]">
+                    <span className="block truncate">
+                      {route.firstPoint} → {route.lastPoint}
+                    </span>
+                  </td>
+                  <td className="py-4 px-3 sm:px-4 whitespace-nowrap">
+                    <button className="text-blue-600 hover:text-blue-800 text-xs font-semibold hover:underline">
                       View
                     </button>
                   </td>
@@ -129,28 +146,30 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
               ))}
             </tbody>
           </table>
+            </div>
+          </div>
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between mt-4 pt-4 border-t">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-4 border-t">
           <div className="text-sm text-gray-900">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, routes.length)} of {routes.length}
           </div>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 border rounded text-sm text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              className="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 active:bg-gray-100 transition"
             >
               Previous
             </button>
-            <span className="px-3 py-1 text-sm text-gray-900">
+            <span className="px-3 py-2 text-sm text-gray-900 font-medium">
               Page {currentPage} of {totalPages}
             </span>
             <button
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 border rounded text-sm text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              className="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 active:bg-gray-100 transition"
             >
               Next
             </button>
