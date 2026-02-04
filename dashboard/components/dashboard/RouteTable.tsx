@@ -104,8 +104,8 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                   className="border-b hover:bg-gray-50 cursor-pointer"
                   onClick={() => onRouteSelect(route)}
                 >
-                  <td className="py-3 px-2 font-semibold">Bus {route.number}</td>
-                  <td className="py-3 px-2 text-gray-600 text-xs">{route.carrier.substring(0, 20)}</td>
+                  <td className="py-3 px-2 font-semibold text-gray-900">Bus {route.number}</td>
+                  <td className="py-3 px-2 text-gray-900 text-xs">{route.carrier.substring(0, 20)}</td>
                   <td className="py-3 px-2">
                     <span className={`px-2 py-1 rounded text-xs font-medium ${
                       route.avgSpeed >= 37 ? "bg-green-100 text-green-800" :
@@ -117,11 +117,11 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                   </td>
                   <td className="py-3 px-2 text-gray-900">{route.routLength} km</td>
                   <td className="py-3 px-2 text-gray-900">{route.stopCount}</td>
-                  <td className="py-3 px-2 text-gray-600 text-xs">
+                  <td className="py-3 px-2 text-gray-900 text-xs">
                     {route.firstPoint} → {route.lastPoint}
                   </td>
                   <td className="py-3 px-2">
-                    <button className="text-blue-600 hover:text-blue-800 text-xs">
+                    <button className="text-blue-600 hover:text-blue-800 text-xs font-semibold">
                       View
                     </button>
                   </td>

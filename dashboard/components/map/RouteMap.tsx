@@ -72,7 +72,21 @@ export default function RouteMap({ routes, selectedRoute, onRouteClick }: RouteM
     );
   }
 
-  const displayRoutes = selectedRoute ? [selectedRoute] : routes;
+  // Show a sample of routes with valid coordinates initially to avoid empty map
+  const displayRoutes = selectedRoute
+    ? [selectedRoute]
+    : routes
+        .filter((route) => {
+          // Only show routes that have valid flowCoordinates
+          return route.routes?.some((variant) =>
+            variant.flowCoordinates &&
+            variant.flowCoordinates.length > 0 &&
+            variant.flowCoordinates.some((coord) =>
+              coord && coord.lat && coord.lon && !isNaN(coord.lat) && !isNaN(coord.lon)
+            )
+          );
+        })
+        .slice(0, 30); // Limit to 30 routes for better initial performance
 
   return (
     <MapContainer
