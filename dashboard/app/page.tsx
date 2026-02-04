@@ -165,7 +165,7 @@ export default function Dashboard() {
                   </button>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-900">
                     <div>
                       <span className="font-semibold">Route:</span> {selectedRoute.firstPoint} → {selectedRoute.lastPoint}
                     </div>

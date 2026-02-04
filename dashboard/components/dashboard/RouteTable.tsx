@@ -56,7 +56,7 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                 <th className="pb-3 px-2">
                   <button
                     onClick={() => handleSort("number")}
-                    className="flex items-center gap-1 font-semibold hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
                   >
                     Route <ArrowUpDown size={14} />
                   </button>
@@ -64,7 +64,7 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                 <th className="pb-3 px-2">
                   <button
                     onClick={() => handleSort("carrier")}
-                    className="flex items-center gap-1 font-semibold hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
                   >
                     Carrier <ArrowUpDown size={14} />
                   </button>
@@ -72,7 +72,7 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                 <th className="pb-3 px-2">
                   <button
                     onClick={() => handleSort("avgSpeed")}
-                    className="flex items-center gap-1 font-semibold hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
                   >
                     Speed <ArrowUpDown size={14} />
                   </button>
@@ -80,7 +80,7 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                 <th className="pb-3 px-2">
                   <button
                     onClick={() => handleSort("routLength")}
-                    className="flex items-center gap-1 font-semibold hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
                   >
                     Length <ArrowUpDown size={14} />
                   </button>
@@ -88,12 +88,12 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                 <th className="pb-3 px-2">
                   <button
                     onClick={() => handleSort("stopCount")}
-                    className="flex items-center gap-1 font-semibold hover:text-blue-600"
+                    className="flex items-center gap-1 font-semibold text-gray-900 hover:text-blue-600"
                   >
                     Stops <ArrowUpDown size={14} />
                   </button>
                 </th>
-                <th className="pb-3 px-2">Destination</th>
+                <th className="pb-3 px-2 text-gray-900 font-semibold">Destination</th>
                 <th className="pb-3 px-2"></th>
               </tr>
             </thead>
@@ -115,8 +115,8 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
                       {route.avgSpeed.toFixed(1)} km/h
                     </span>
                   </td>
-                  <td className="py-3 px-2">{route.routLength} km</td>
-                  <td className="py-3 px-2">{route.stopCount}</td>
+                  <td className="py-3 px-2 text-gray-900">{route.routLength} km</td>
+                  <td className="py-3 px-2 text-gray-900">{route.stopCount}</td>
                   <td className="py-3 px-2 text-gray-600 text-xs">
                     {route.firstPoint} → {route.lastPoint}
                   </td>
@@ -133,24 +133,24 @@ export default function RouteTable({ routes, onRouteSelect }: RouteTableProps) {
 
         {/* Pagination */}
         <div className="flex items-center justify-between mt-4 pt-4 border-t">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-gray-900">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, routes.length)} of {routes.length}
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              className="px-3 py-1 border rounded text-sm text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
               Previous
             </button>
-            <span className="px-3 py-1 text-sm">
+            <span className="px-3 py-1 text-sm text-gray-900">
               Page {currentPage} of {totalPages}
             </span>
             <button
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              className="px-3 py-1 border rounded text-sm text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
               Next
             </button>

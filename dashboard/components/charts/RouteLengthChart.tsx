@@ -49,8 +49,8 @@ export default function RouteLengthChart({ routes }: RouteLengthChartProps) {
               if (active && payload && payload.length) {
                 return (
                   <div className="bg-white p-3 border rounded shadow">
-                    <p className="font-semibold">{payload[0].payload.name}</p>
-                    <p className="text-sm">Routes: {payload[0].value}</p>
+                    <p className="font-semibold text-gray-900">{payload[0].payload.name}</p>
+                    <p className="text-sm text-gray-900">Routes: {payload[0].value}</p>
                     <p className="text-sm text-gray-600">{payload[0].payload.percentage}%</p>
                   </div>
                 );
