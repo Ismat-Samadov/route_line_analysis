@@ -1,10 +1,10 @@
 # Bus Route Network Analysis
 ## Executive Summary Report
 
-**Analysis Date:** February 2026
-**Network Coverage:** 208 Bus Routes
-**Total Network Distance:** 7,745 km
-**Total Service Points:** 11,786 stops
+- **Analysis Date:** February 2026
+- **Network Coverage:** 208 Bus Routes
+- **Total Network Distance:** 7,745 km
+- **Total Service Points:** 11,786 stops
 
 ---
 
