@@ -192,7 +192,6 @@ def scrape_all_courses() -> list[dict]:
     print(f"Found {len(subjects)} subjects: {subjects}\n")
 
     for subject in subjects:
-        before = len(seen)
         added = scrape_segment(
             facet_filters=["product:Course", f"attributes:{subject}"],
             label=subject,
@@ -200,6 +199,11 @@ def scrape_all_courses() -> list[dict]:
         )
         print(f"  [{subject}]  +{added} new  (total: {len(seen)})")
         time.sleep(0.2)
+
+    # Catch courses with no subject tag via a full sweep
+    print("\nFinal sweep (courses with no subject)...")
+    added = scrape_segment(facet_filters=["product:Course"], label="(no filter)", seen=seen)
+    print(f"  [(no subject)]  +{added} new  (total: {len(seen)})")
 
     return list(seen.values())
 
