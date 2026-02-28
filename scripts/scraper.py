@@ -136,28 +136,16 @@ def extract_fields(hit: dict) -> dict:
     }
 
 
-def scrape_segment(facet_filters: list, label: str, seen: set) -> int:
-    """Paginate through a filtered segment and add new hits to `seen` dict."""
+def _paginate(facet_filters: list, seen: dict) -> int:
+    """Paginate through all pages of a segment (assumes nbHits <= 1000)."""
     result = post({"requests": [build_query(facet_filters, 0)]})
-    nb_hits = result.get("nbHits", 0)
     nb_pages = result.get("nbPages", 1)
-
-    if nb_hits > 1000:
-        # Algolia will silently cap at 1000 — need to split further
-        print(f"  WARNING: segment '{label}' has {nb_hits} hits > 1000, splitting by level...")
-        levels = list(result.get("facets", {}).get("level", {}).keys())
-        added = 0
-        for lvl in levels:
-            added += scrape_segment(facet_filters + [f"level:{lvl}"], f"{label} / {lvl}", seen)
-        return added
-
     added = 0
     for hit in result.get("hits", []):
         oid = hit.get("objectID")
         if oid and oid not in seen:
             seen[oid] = extract_fields(hit)
             added += 1
-
     for page in range(1, nb_pages):
         time.sleep(0.25)
         result = post({"requests": [build_query(facet_filters, page)]})
@@ -166,8 +154,33 @@ def scrape_segment(facet_filters: list, label: str, seen: set) -> int:
             if oid and oid not in seen:
                 seen[oid] = extract_fields(hit)
                 added += 1
-
     return added
+
+
+def scrape_segment(facet_filters: list, label: str, seen: dict, _split_by: str = "level") -> int:
+    """Paginate a filtered segment; if > 1000 hits, split by level once."""
+    result = post({"requests": [build_query(facet_filters, 0)]})
+    nb_hits = result.get("nbHits", 0)
+
+    if nb_hits > 1000:
+        print(f"  WARNING: segment '{label}' has {nb_hits} hits > 1000, splitting by {_split_by}...")
+        sub_values = list(result.get("facets", {}).get(_split_by, {}).keys())
+        # Avoid splitting on a dimension that's already in the filters
+        existing = {f.split(":")[0] for f in facet_filters}
+        if _split_by in existing or not sub_values:
+            # Can't split further — just paginate (will be capped at 1000 by Algolia)
+            return _paginate(facet_filters, seen)
+        added = 0
+        for val in sub_values:
+            added += scrape_segment(
+                facet_filters + [f"{_split_by}:{val}"],
+                f"{label} / {val}",
+                seen,
+                _split_by=_split_by,
+            )
+        return added
+
+    return _paginate(facet_filters, seen)
 
 
 def get_all_subjects() -> list[str]:
@@ -200,10 +213,11 @@ def scrape_all_courses() -> list[dict]:
         print(f"  [{subject}]  +{added} new  (total: {len(seen)})")
         time.sleep(0.2)
 
-    # Catch courses with no subject tag via a full sweep
-    print("\nFinal sweep (courses with no subject)...")
-    added = scrape_segment(facet_filters=["product:Course"], label="(no filter)", seen=seen)
-    print(f"  [(no subject)]  +{added} new  (total: {len(seen)})")
+    # Catch courses with no subject tag — simple paginated pass (Algolia caps at 1000,
+    # but seen already has ~5100 entries so we only pick up the small remainder)
+    print("\nFinal sweep (catching courses with no subject tag)...")
+    added = _paginate(facet_filters=["product:Course"], seen=seen)
+    print(f"  [(no subject sweep)]  +{added} new  (total: {len(seen)})")
 
     return list(seen.values())
 
