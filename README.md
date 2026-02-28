@@ -1,7 +1,7 @@
 # edX Platform — Business Intelligence Report
 
-**Data source:** edX.org public course catalog · **5,107 courses** · **133 partners**
-**Total recent enrollments tracked:** 3,022,568
+- **Data source:** edX.org public course catalog · **5,107 courses** · **133 partners**
+- **Total recent enrollments tracked:** 3,022,568
 
 ---
 
